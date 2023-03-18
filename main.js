@@ -73,4 +73,10 @@ const personas = [{
 ]
 
 
+// 
+
+let btnJugar = document.getElementById('jugar')
+btnJugar.addEventListener('click', e =>{
+    alert('click');
+})
 
