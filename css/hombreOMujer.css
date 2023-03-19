@@ -35,7 +35,7 @@ h1{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    top: 550px;
+    top: 480px;
     height: 33px;
     width: 264px;
     
@@ -48,4 +48,8 @@ button{
     font-family: 'Gorditas', cursive;
     color: #3E3124;
     font-weight: 400;
+}
+#cerrar{
+    position: absolute;
+    top: 600px
 }
