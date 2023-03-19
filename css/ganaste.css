@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #FFD66D;
+    display: flex;
+    justify-content: center;
+}
+img{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    width: 327px;
+    height: 259px;
+    top: 96px;
+}
+h1{
+    position: absolute;
+    width: 242px;
+    height: 112px;
+    top: 380px;
+    font-family: 'Gorditas';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    text-align: center;
+}

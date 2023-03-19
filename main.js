@@ -10,6 +10,7 @@ const personas = [
     hablaEnClase: true,
     moquero: true,
     fama: true,
+    foto: ''
   },
   {
     nombre: "Juane",
@@ -20,6 +21,7 @@ const personas = [
     hablaEnClase: false,
     moquero: false,
     fama: true,
+    foto: ''
   },
   {
     nombre: "Angel",
@@ -30,16 +32,18 @@ const personas = [
     hablaEnClase: true,
     moquero: false,
     fama: false,
+    foto: ''
   },
   {
     nombre: "Mariel C",
     genero: "Femenino",
-    edad: 30,
+    edad: 29,
     trabajoIT: false,
     tieneTrabajo: true,
     hablaEnClase: true,
     moquero: false,
     fama: false,
+    foto: ''
   },
   {
     nombre: "Anthony",
@@ -50,6 +54,7 @@ const personas = [
     hablaEnClase: true,
     moquero: true,
     fama: false,
+    foto: ''
   },
   {
     nombre: "Gi",
@@ -60,6 +65,7 @@ const personas = [
     hablaEnClase: true,
     moquero: false,
     fama: false,
+    foto: ''
   },
   {
     nombre: "Mati N",
@@ -70,6 +76,7 @@ const personas = [
     hablaEnClase: true,
     moquero: false,
     fama: false,
+    foto: ''
   },
 ];
 
@@ -90,23 +97,35 @@ if (btnJugar) {
   });
 }
 
+// ------------------ Pagina de preguntas ---------------
 
-
-// ------------------ Pagina hombre o mujer ---------------
-
+// esta variable se usa para luego validar qué opción se seleccionó
+// Se va modificando en cada ciclo o cada repetición en la diferentes preguntas
 let opcSelec = "";
 
-let classBody = document.querySelector("body").className;
+// Variables necesarias para trabajar con los datos del hmtml
+let classBody = document.querySelector("body").className; // esta variable es para extraer la clase del body, para saber qué pregunta es la que va, y luego se usa como parámetro para saber qué validar
 let opc1 = document.getElementById("opc1");
 let opc2 = document.getElementById("opc2");
 let btnCerrar = document.getElementById("btnCerrar");
 
 console.log(saldoPersonas.length);
 
+
+if(saldoPersonas.length == 1){}
+
+
+// Esto es porque en algunos páginas no están algunas de estas opciones y me tira error. Entonces valido antes y si existen, en la página correspondiente, se ejecturá el código. Y en las páginas donde no estén, no
 if (opc1 || opc2) {
+  // ternario para asignarle un valor a la variable dependiende si existe o no
   let h1Class = document.querySelector(".abierta") ? "abierta" : "";
   if (h1Class == "abierta") {
     opc1.addEventListener("click", (e) => {
+      console.log("entra pregunta abierta si");
+      saldoPersonas = JSON.parse(sessionStorage.getItem("saldoPersonas"));
+      console.log("saldoPersonas ");
+      console.log(saldoPersonas);
+      sessionStorage.removeItem("saldoPersonas");
       cont++;
       opc2.disabled = true;
       opcSelec = opc1.innerText == "Si" ? true : "";
@@ -114,25 +133,29 @@ if (opc1 || opc2) {
       //window.location = paginas[cont];
     });
     opc2.addEventListener("click", (e) => {
+      console.log("entra pregunta abierta no");
+      saldoPersonas = JSON.parse(sessionStorage.getItem("saldoPersonas"));
+      sessionStorage.removeItem("saldoPersonas");
       cont++;
       opc1.disabled = true;
       opcSelec = opc2.innerText == "No" ? false : "";
       validacion(classBody);
-      window.location = paginas[cont];
-    });
-  } else {
-    cont++;
-    opc1.addEventListener("click", (e) => {
-      console.log("entra en click pregunta cerrada");
-      console.log('saldo personas dentro de evento click cerrada',saldoPersonas);
-      opc2.disabled = true;
-      opcSelec = opc1.innerText;
-      console.log('clase boddy ' + classBody);
-      validacion(classBody);
-      
       //window.location = paginas[cont];
     });
+  } else {
+    
+    opc1.addEventListener("click", (e) => {
+      console.log("entra en click pregunta cerrada masculino");
+      cont++;
+      opc2.disabled = true;
+      opcSelec = opc1.innerText;
+      console.log("clase boddy " + classBody);
+      validacion(classBody);
+
+      window.location = paginas[cont];
+    });
     opc2.addEventListener("click", (e) => {
+        console.log('entra pregunta cerrada femenino');
       cont++;
       opc1.disabled = true;
       opcSelec = opc2.innerText;
@@ -145,67 +168,53 @@ if (opc1 || opc2) {
 // ----------------- Pagina de edad -------------
 
 let validacion = (validacion) => {
-
-//   if (saldoPersonas.length == null) {
-//     personas.forEach((persona) => {
-//       if (persona[validacion] == opcSelec) {
-//         saldoPersonas.push(persona);
-//         sessionStorage.setItem("saldoPersonas", JSON.stringify(saldoPersonas));
-//       }
-//     });
-//   } else {
-//     if (validacion == "edad") {
-//       if (opcSelec) {
-//         saldoPersonas.forEach((persona) => {
-//           if (persona.edad >= 30) {
-//             saldoPersonas.push(persona);
-//             sessionStorage.setItem(
-//               "saldoPersonas",
-//               JSON.stringify(saldoPersonas)
-//             );
-//           }
-//         });
-//       }
-//     }
-//   }
-
-try{
-    if(saldoPersonas.length != 0){
-        if (validacion == "edad") {
-                  if (opcSelec) {
-                    saldoPersonas.forEach((persona) => {
-                      if (persona.edad >= 30) {
-                        saldoPersonas.push(persona);
-                        sessionStorage.setItem(
-                          "saldoPersonas",
-                          JSON.stringify(saldoPersonas)
-                        );
-                      }
-                    });
-                  }
-                }
-    }else{
-        console.log('entra else dentro del try, osea que lenght = 0');
-        personas.forEach((persona) => {
-                  if (persona[validacion] == opcSelec) {
-                    saldoPersonas.push(persona);
-                    sessionStorage.setItem("saldoPersonas", JSON.stringify(saldoPersonas));
-                  }
-                });
-                console.log(saldoPersonas);
+  try {
+    if (saldoPersonas.length != 0) {
+      console.log("entro validacion length diferente de cero");
+      if (validacion == "edad") {
+        console.log("entra if de edad");
+        if (opcSelec) {
+          console.log("entra if opcSeleccionada");
+          let resultado = saldoPersonas.filter((persona) => persona.edad >= 30);
+          saldoPersonas = resultado;
+          sessionStorage.setItem(
+            "saldoPersonas",
+            JSON.stringify(saldoPersonas)
+          );
+        } else {
+          console.log("entra if opcSelec false");
+          let resultado = saldoPersonas.filter((persona) => persona.edad < 30);
+          saldoPersonas = resultado;
+          sessionStorage.setItem(
+            "saldoPersonas",
+            JSON.stringify(saldoPersonas)
+          );
+        }
+      }
+    } else {
+      console.log("entra else dentro del try, osea que lenght = 0");
+      personas.forEach((persona) => {
+        if (persona[validacion] == opcSelec) {
+          saldoPersonas.push(persona);
+          sessionStorage.setItem(
+            "saldoPersonas",
+            JSON.stringify(saldoPersonas)
+          );
+        }
+      });
+      console.log(saldoPersonas);
     }
-}catch{
-    console.log('valor saldoPersonas' + saldoPersonas);
+  } catch {
+    console.log("valor saldoPersonas" + saldoPersonas);
     personas.forEach((persona) => {
-        console.log('entra validacion del catch');
-              if (persona[validacion] == opcSelec) {
-                saldoPersonas.push(persona);
-                sessionStorage.setItem("saldoPersonas", JSON.stringify(saldoPersonas));
-              }
-            });
-}
-
-}
+      console.log("entra validacion del catch");
+      if (persona[validacion] == opcSelec) {
+        saldoPersonas.push(persona);
+        sessionStorage.setItem("saldoPersonas", JSON.stringify(saldoPersonas));
+      }
+    });
+  }
+};
 
 if (btnCerrar) {
   btnCerrar.addEventListener("click", (e) => {
