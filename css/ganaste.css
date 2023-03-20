@@ -6,6 +6,9 @@
 
 body{
     background-color: #FFD66D;
+   
+}
+div{
     display: flex;
     justify-content: center;
 }

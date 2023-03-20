@@ -76,7 +76,7 @@ const personas = [
     hablaEnClase: true,
     moquero: false,
     fama: false,
-    foto: ''
+    foto: './img/victoria.png'
   },
 ];
 
@@ -111,8 +111,36 @@ let btnCerrar = document.getElementById("btnCerrar");
 
 console.log(saldoPersonas.length);
 
+    //saldoPersonas = JSON.parse(sessionStorage.getItem('saldoPersonas'))
+    // let h1Ganador = document.getElementById('hGanador')
+    // let imgGanador = document.getElementById('img-ganador')
+    // h1Ganador.innerHTML = `Felicitaciones ${saldoPersonas.nombre} SOS EL TOPO DE LA MATERIA`
+    // imgGanador.setAttribute('src',saldoPersonas.foto)
+let validarGanador = () =>{
+if(saldoPersonas.length == 1){
+  
+  console.log('entra');
+  setTimeout(()=>{
+    let contenedor = document.createElement('div')
+    contenedor.innerHTML= `
+    <img src='${saldoPersonas.foto} alt='foto del ganador' id='img-ganador'>
+    <h1 id='hGanador'>Felicitaciones ${saldoPersonas.nombre}! SOS EL TOPO DE LA CAMADA!! </h1>
+    `
+  },200)
+  window.location.href = './ganaste.html'
 
-if(saldoPersonas.length == 1){}
+    // saldoPersonas = JSON.parse(sessionStorage.getItem('saldoPersonas'))
+    // let h1Ganador = document.getElementById('hGanador')
+    // let imgGanador = document.getElementById('img-ganador')
+    // window.location = './ganaste.html'
+    // h1Ganador.innerHTML = `Felicitaciones ${saldoPersonas.nombre} GANASTE`
+    // imgGanador.setAttribute('src',saldoPersonas.foto)
+    
+    
+}else{
+    window.location = paginas[cont]
+}
+}
 
 
 // Esto es porque en algunos páginas no están algunas de estas opciones y me tira error. Entonces valido antes y si existen, en la página correspondiente, se ejecturá el código. Y en las páginas donde no estén, no
@@ -130,7 +158,7 @@ if (opc1 || opc2) {
       opc2.disabled = true;
       opcSelec = opc1.innerText == "Si" ? true : "";
       validacion(classBody);
-      //window.location = paginas[cont];
+      validarGanador()
     });
     opc2.addEventListener("click", (e) => {
       console.log("entra pregunta abierta no");
@@ -140,7 +168,7 @@ if (opc1 || opc2) {
       opc1.disabled = true;
       opcSelec = opc2.innerText == "No" ? false : "";
       validacion(classBody);
-      //window.location = paginas[cont];
+      validarGanador()
     });
   } else {
     
@@ -151,8 +179,7 @@ if (opc1 || opc2) {
       opcSelec = opc1.innerText;
       console.log("clase boddy " + classBody);
       validacion(classBody);
-
-      window.location = paginas[cont];
+      validarGanador()
     });
     opc2.addEventListener("click", (e) => {
         console.log('entra pregunta cerrada femenino');
@@ -160,7 +187,7 @@ if (opc1 || opc2) {
       opc1.disabled = true;
       opcSelec = opc2.innerText;
       validacion(classBody);
-      window.location = paginas[cont];
+      validarGanador()
     });
   }
 }
@@ -216,10 +243,10 @@ let validacion = (validacion) => {
   }
 };
 
-if (btnCerrar) {
-  btnCerrar.addEventListener("click", (e) => {
-    sessionStorage.removeItem("saldoPersonas");
-    sessionStorage.removeItem("cont");
+
+ if(btnCerrar)
+ { btnCerrar.addEventListener("click", (e) => {
+    console.log('entra boton cerrar')
     window.location = "/index.html";
-  });
-}
+  });}
+
