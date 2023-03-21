@@ -10,7 +10,7 @@ const personas = [
     hablaEnClase: true,
     moquero: true,
     fama: true,
-    foto: ''
+    foto: "",
   },
   {
     nombre: "Juane",
@@ -21,7 +21,7 @@ const personas = [
     hablaEnClase: false,
     moquero: false,
     fama: true,
-    foto: ''
+    foto: "",
   },
   {
     nombre: "Angel",
@@ -32,7 +32,7 @@ const personas = [
     hablaEnClase: true,
     moquero: false,
     fama: false,
-    foto: ''
+    foto: "",
   },
   {
     nombre: "Mariel C",
@@ -43,7 +43,7 @@ const personas = [
     hablaEnClase: true,
     moquero: false,
     fama: false,
-    foto: ''
+    foto: "",
   },
   {
     nombre: "Anthony",
@@ -54,7 +54,7 @@ const personas = [
     hablaEnClase: true,
     moquero: true,
     fama: false,
-    foto: ''
+    foto: "",
   },
   {
     nombre: "Gi",
@@ -65,7 +65,7 @@ const personas = [
     hablaEnClase: true,
     moquero: false,
     fama: false,
-    foto: ''
+    foto: "",
   },
   {
     nombre: "Mati N",
@@ -76,7 +76,7 @@ const personas = [
     hablaEnClase: true,
     moquero: false,
     fama: false,
-    foto: './img/victoria.png'
+    foto: "./img/victoria.png",
   },
 ];
 
@@ -111,37 +111,37 @@ let btnCerrar = document.getElementById("btnCerrar");
 
 console.log(saldoPersonas.length);
 
-    //saldoPersonas = JSON.parse(sessionStorage.getItem('saldoPersonas'))
-    // let h1Ganador = document.getElementById('hGanador')
-    // let imgGanador = document.getElementById('img-ganador')
-    // h1Ganador.innerHTML = `Felicitaciones ${saldoPersonas.nombre} SOS EL TOPO DE LA MATERIA`
-    // imgGanador.setAttribute('src',saldoPersonas.foto)
-let validarGanador = () =>{
-if(saldoPersonas.length == 1){
+
+let validarGanador = () => {
+  if (saldoPersonas.length == 1) {
+    let { foto, nombre } = saldoPersonas
+    console.log(saldoPersonas);
+    console.log(foto);
+    console.log(saldoPersonas.foto);
+    
+    console.log("entra");
+    document.getElementById("imagen").setAttribute('src', '');
+
+    document.getElementById("pregunta").remove();
+    document.getElementById("contenedor").remove();
+    document.getElementById("btnCerrar").remove();
+    document.querySelector("title").innerText = "GANASTE!!";
+
   
-  console.log('entra');
-  setTimeout(()=>{
-    let contenedor = document.createElement('div')
-    contenedor.innerHTML= `
-    <img src='${saldoPersonas.foto} alt='foto del ganador' id='img-ganador'>
-    <h1 id='hGanador'>Felicitaciones ${saldoPersonas.nombre}! SOS EL TOPO DE LA CAMADA!! </h1>
-    `
-  },200)
-  window.location.href = './ganaste.html'
-
-    // saldoPersonas = JSON.parse(sessionStorage.getItem('saldoPersonas'))
-    // let h1Ganador = document.getElementById('hGanador')
-    // let imgGanador = document.getElementById('img-ganador')
-    // window.location = './ganaste.html'
-    // h1Ganador.innerHTML = `Felicitaciones ${saldoPersonas.nombre} GANASTE`
-    // imgGanador.setAttribute('src',saldoPersonas.foto)
-    
-    
-}else{
-    window.location = paginas[cont]
-}
-}
-
+//     cuerpo.innerHTML = `
+//   <div>
+//   <img src="${newArray.foto}" alt="" class= 'ganador'>
+//   <h1>Felicitaciones, ${newArray.nombre} SOS EL TOPO DE LA CAMADA!!</h1>
+// </div>
+// <div id="cerrar">
+//   <button id="btnCerrar">Cerrar juego</button>
+// </div>
+//   `;
+  
+  } else {
+    window.location = paginas[cont];
+  }
+};
 
 // Esto es porque en algunos páginas no están algunas de estas opciones y me tira error. Entonces valido antes y si existen, en la página correspondiente, se ejecturá el código. Y en las páginas donde no estén, no
 if (opc1 || opc2) {
@@ -158,7 +158,7 @@ if (opc1 || opc2) {
       opc2.disabled = true;
       opcSelec = opc1.innerText == "Si" ? true : "";
       validacion(classBody);
-      validarGanador()
+      validarGanador();
     });
     opc2.addEventListener("click", (e) => {
       console.log("entra pregunta abierta no");
@@ -168,10 +168,9 @@ if (opc1 || opc2) {
       opc1.disabled = true;
       opcSelec = opc2.innerText == "No" ? false : "";
       validacion(classBody);
-      validarGanador()
+      validarGanador();
     });
   } else {
-    
     opc1.addEventListener("click", (e) => {
       console.log("entra en click pregunta cerrada masculino");
       cont++;
@@ -179,15 +178,15 @@ if (opc1 || opc2) {
       opcSelec = opc1.innerText;
       console.log("clase boddy " + classBody);
       validacion(classBody);
-      validarGanador()
+      validarGanador();
     });
     opc2.addEventListener("click", (e) => {
-        console.log('entra pregunta cerrada femenino');
+      console.log("entra pregunta cerrada femenino");
       cont++;
       opc1.disabled = true;
       opcSelec = opc2.innerText;
       validacion(classBody);
-      validarGanador()
+      validarGanador();
     });
   }
 }
@@ -243,10 +242,9 @@ let validacion = (validacion) => {
   }
 };
 
-
- if(btnCerrar)
- { btnCerrar.addEventListener("click", (e) => {
-    console.log('entra boton cerrar')
+if (btnCerrar) {
+  btnCerrar.addEventListener("click", (e) => {
+    console.log("entra boton cerrar");
     window.location = "/index.html";
-  });}
-
+  });
+}

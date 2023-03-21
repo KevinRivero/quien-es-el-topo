@@ -31,3 +31,16 @@ h1{
     font-size: 36px;
     text-align: center;
 }
+button{
+    width: 113px;
+    height: 33px;
+    background: #FAB400;
+    border: 2px solid #000000;
+    font-family: 'Gorditas', cursive;
+    color: #3E3124;
+    font-weight: 400;
+}
+#cerrar{
+    position: absolute;
+    top: 600px
+}

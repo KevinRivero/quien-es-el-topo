@@ -17,6 +17,18 @@ img{
     top: 50px;
     justify-content: center;
 }
+.ganador{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    width: 327px;
+    height: 259px;
+    top: 96px;
+}
+div{
+    display: flex;
+    justify-content: center;
+}
 h1{
     display: flex;
     justify-content: center;
@@ -24,7 +36,7 @@ h1{
     flex-wrap: wrap;
     top: 375px;
     font-family: 'Gorditas', cursive;
-    font-size: 36px;
+    font-size: 38px;
     letter-spacing: -0.025em;
     font-weight: 700;
     color: #3E3124;
